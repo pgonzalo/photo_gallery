@@ -3,19 +3,22 @@ const morgan = require('morgan');
 const multer = require('multer');
 const path = require('path');11
 const exphbs = require('express-handlebars');
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
+const Handlebars = require('handlebars');
 
 //Initializations       1 hora 37 minutos
 const app = express();
 require('./database');
 
 //Settings
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3005);
 app.set('views', path.join(__dirname, 'views'));
 app.engine('.hbs', exphbs({
     defaultLayout: 'main',
     layoutsDir: path.join(app.get('views'), 'layouts'),
     partialsDir: path.join(app.get('views'), 'partials'),
-    extname: '.hbs'
+    extname: '.hbs',
+    handlebars: allowInsecurePrototypeAccess(Handlebars)
 }));
 app.set('view engine', '.hbs');
 
@@ -33,6 +36,7 @@ app.use(multer({storage}).single('image'));
 
 // Routes
 app.use(require('./routes'));
+app.use(express.static('views/images')); 
 
 module.exports = app;
 

@@ -12,7 +12,8 @@ const fs = require('fs-extra');
 
 router.get('/', async (req, res) => {
     const photos = await Photo.find();
-    res.render('images', {photos});       
+    console.log(photos);
+    res.render('images', photos);       
 });
 
 router.get('/images/add', async (req, res) => {
