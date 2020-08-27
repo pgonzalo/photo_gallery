@@ -1,3 +1,38 @@
-{{#each this}}
-    <img src='{{imageURL}}'>
-{{/each}}
+<style>
+body {
+      background: #fff;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    .swiper-container {
+      width: 100%;
+      height: 70vh;
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+
+    .swiper-slide {
+      background-position: center;
+      background-size: cover;
+      width: 300px;
+      height: 400px;
+
+    }
+</style>
+
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        {{#each this}}
+        <img src='{{imageURL}}' alt="" class="swiper-slide">
+        {{/each}}        
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+
+
+</div>
+
